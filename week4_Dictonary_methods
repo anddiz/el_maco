@@ -1,3 +1,32 @@
+Dictionery week 4 , 
+
+## Create a dic in python
+net_device = {}
+type(net_device)
+
+## add keys
+
+net_device['ip_addr'] = '192.1.1.1'
+net_device = {'ip_addr' : '192.1.1.2'}
+var1 = 'vendor'
+
+net_device[var1] = 'cisco'
+net_device['device_type'] = 'ios'
+
+
+### access key values 
+
+net_device['device_type']
+net_device['vendor'] 
+net_device['vendor'] = 'juniper' ## change key ## if key dont exist, python will info with KeyError
+
+net_device2 = net_device 
+net_device2 is net_device ## Is the same thing in memory... look up. 
+
+
+
+
+#######
 
 
 net_device is net_device2 
