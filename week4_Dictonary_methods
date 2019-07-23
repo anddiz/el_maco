@@ -1,0 +1,23 @@
+
+
+net_device is net_device2 
+net_device2 = net_device.copy()
+print(net_device.get('module', '811'))
+dir()
+
+net_device.pop('model')
+
+
+net_device2 = {'model' : '881'}
+net_device.update(net_device2) 
+
+for key in net_device: 
+    print(key)
+
+for v in net_device.values():
+    print(v)
+
+for key , value in net_device.items():
+    print(key)
+    print(value)
+    print('-' * 30)
