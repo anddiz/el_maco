@@ -1,0 +1,35 @@
+from netmiko import ConnectHandle
+
+### import the ConnectHandler factory function from Netmiko. This factory function selects the correct Netmiko 
+### class based upon the device_type. 
+### I then define a network device dictionary consisting of a device_type, ip, username, and password.
+
+juniper_srx = { 
+   'device_type': 'juniper', 
+   'host':   'srx1.domain.com', 
+   'username': 'admin', 
+   'password': '!cisco123', 
+   } 
+   
+net_connect = ConnectHandler(**juniper_srx) 
+   
+### Alternatively, I could just call the ConnectHandler function directly and not use a dictionary (as follows): 
+###net_connect2 = ConnectHandler(device_type='cisco_ios', host='cisco.domain.com', username='admin', password='cisco123') 
+   
+   
+###  I can verify this by executing the find_prompt() method
+net_connect.find_prompt()
+   
+ ###  look at the current logging configuration 
+ output = net_connect.send_command("show run | inc logging")
+ print(output)
+ 
+ 
+ ### create a list of configuration commands that I want to execute. This could be a single command or multiple commands. 
+ config_commands = ['logging buffered 19999']  
+ output = net_connect.send_config_set(config_commands)
+  print(output)
+ 
+ ### verify my change
+ output = net_connect.send_command("show run | inc logging")
+ print(output)
