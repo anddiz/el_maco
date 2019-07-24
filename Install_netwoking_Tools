@@ -1,0 +1,84 @@
+Docker Ubuntu - Quick setup guides for Ansible, Netmiko and Paramiko
+Discussion · General Networking
+Hey guys,
+
+After following along with David Bombal's great Python series so I wanted to create a quick method to install
+Netmiko and Paramiko which are great Python network libraries for SSH and Telnet network access to many vendor 
+network OS's including Cisco IOS, Juniper JunOS and Arista EOS and many more.
+
+ 
+
+Please see below quick and dirty guide for installing these below on the Ubuntu Docker container template in
+the Appliances in the Marketplace.
+
+ 
+
+Of course you will need to have Internet access and easy way to do this is configure a NAT router or NAT cloud
+in GNS3 Version 2 RC and then configure the Ubuntu eth0 interface for DHCP.
+
+This is easily done under config or in the Ubuntu OS CLI using command "nano /etc/network/interfaces" and
+uncomment (IE remove) the # at the start of the lines as below.
+
+# DHCP config for eth0
+auto eth0
+iface eth0 inet dhcp
+
+ 
+
+Hope this helps someone out to get going quickly.
+
+ 
+
+Install Netmiko/Paramiko
+
+apt-get update
+
+apt-get install python -y
+
+apt-get install build-essential libssl-dev libffi-dev -y
+
+apt-get install python-pip -y
+
+ 
+
+pip install cryptography
+
+pip install paramiko
+
+ 
+
+Or to install Netmiko
+
+pip install netmiko
+
+ 
+
+Install Ansible
+
+apt-get update
+
+apt-get install software-properties-common
+
+apt-add-repository ppa:ansible/ansible
+
+press "enter" to confirm the addition of repository
+
+apt-get update
+
+apt-get install ansible
+#### 
+
+The only addition I would make, is to mention how to grab Ansible roles off galaxy. 
+
+One of these days, I need to sit down and read the Docker books I have, so I could premake Ansible, Puppet, Chef, 
+and Saltstack containers (including an ftp/scp server, so nodes can locally grab the client agents) Al Reid · 2 years ago
+That my friend would be an awesome download.
+
+ 
+
+I'm very new to Ansible but just wanted to show people how to get started without the barrier of setup which can
+be a little overwhelming for those not ver familiar with Linux and packages and even the basic of PIP.
+
+ 
+
+No expert like I said but thought it might be worth sharing.
